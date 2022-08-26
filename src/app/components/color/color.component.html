@@ -1,0 +1,7 @@
+
+<select class="form-select" size="5" aria-label="size 5 select example">
+    <option selected>Renk</option>
+    <option *ngFor="let color of colors" value="{{ color.id }}">
+      {{ color.name }}
+    </option>
+  </select> 

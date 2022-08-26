@@ -1,0 +1,6 @@
+<select class="form-select" size="5" aria-label="size 5 select example">
+  <option selected>Marka</option>
+  <option *ngFor="let brand of brands" value="{{ brand.id }}">
+    {{ brand.name }}
+  </option>
+</select>

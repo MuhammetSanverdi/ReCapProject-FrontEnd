@@ -1,0 +1,18 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+        <th scope="col">Adı</th>
+        <th scope="col">Soyadı</th>
+        <th scope="col">Şirket Adı</th>
+        <th scope="col">Email</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let customer of customers">
+            <td>{{customer.firstName}}</td>
+            <td>{{customer.lastName}}</td>
+            <td>{{customer.companyName}}</td>
+            <td>{{customer.email}}</td>
+        </tr>
+    </tbody>
+</table>
