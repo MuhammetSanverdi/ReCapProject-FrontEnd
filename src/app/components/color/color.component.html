@@ -1,7 +1,12 @@
+<ul class="list-group">
+  <li
+    (click)="setCurrentColor(color)"
+    routerLink="cars/colors/{{ color.id }}"
+    *ngFor="let color of colors"
+    [class]="getCurrentColorClass(color)"
+  >
+    {{ color.name }}
+  </li>
+</ul>
 
-<select class="form-select" size="5" aria-label="size 5 select example">
-    <option selected>Renk</option>
-    <option *ngFor="let color of colors" value="{{ color.id }}">
-      {{ color.name }}
-    </option>
-  </select> 
+<h5 *ngIf="currentColor">{{ currentColor.name }} seçtiniz</h5>

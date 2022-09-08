@@ -1,6 +1,17 @@
-<select class="form-select" size="5" aria-label="size 5 select example">
-  <option selected>Marka</option>
-  <option *ngFor="let brand of brands" value="{{ brand.id }}">
+<ul class="list-group">
+  <li
+  (click)="setCurrentDefaultBrand()"
+  routerLink=""
+  [class]="getCurrentDefaultBrandClass()"
+  >Tüm Markalar</li>
+  <li
+    (click)="setCurrentBrand(brand)"
+    routerLink="cars/brands/{{ brand.id }}"
+    *ngFor="let brand of brands"
+    [class]="getCurrentBrandClass(brand)"
+  >
     {{ brand.name }}
-  </option>
-</select>
+  </li>
+</ul>
+
+<h5 *ngIf="currentBrand">{{ currentBrand.name }} seçtiniz</h5>
