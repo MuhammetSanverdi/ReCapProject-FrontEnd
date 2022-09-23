@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CarDetail } from 'src/app/models/carDetail';
+import { CarImage } from 'src/app/models/carImage';
+import { ListResponseModel } from 'src/app/models/listResponseModel';
+import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
 
 @Component({
@@ -11,9 +14,13 @@ import { CarService } from 'src/app/services/car.service';
 export class CarComponent implements OnInit {
 
   carDetails:CarDetail[]=[];
+  carDetail:CarDetail;
+  defaultCarImage:CarImage;
+  readonly imageDefaultPath="https://localhost:44397/uploads/images/"
+  myCarImage:string="";
   dataLoaded=false;
   isFiltered=false;
-  constructor(private carService:CarService,private activatedRoute:ActivatedRoute) { }
+  constructor(private carService:CarService,private carImageService:CarImageService,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params)=>{
@@ -26,28 +33,27 @@ export class CarComponent implements OnInit {
         this.getCarsByColor(params['colorId']);
       }
       else{
-        this.getRentalDetails();
+        this.getCarDetails();
       }
-    }) 
-  }
+    })}
 
-  getRentalDetails(){
-    this.carService.getRentalDetails().subscribe(response=>{
-      this.carDetails=response.data,
-      this.dataLoaded=true
-    })
-  }
-  getCarsByBrand(brandId:number){
-    this.carService.getCarsByBrands(brandId).subscribe(response=>{
+  getCarDetails(){
+    this.carService.getCarDetails().subscribe(response=>{
       this.carDetails=response.data;
       this.dataLoaded=true;
     })
-  }
+  }  
+  getCarsByBrand(brandId:number){
+    this.carService.getCarsByBrands(brandId).subscribe(response=>{
+      this.carDetails=response.data;
+      this.dataLoaded=true;      
+    })}
+
   getCarsByColor(colorId:number){
     this.carService.getCarsByColors(colorId).subscribe(response=>{
       this.carDetails=response.data;
       this.dataLoaded=true;
     })
-  }
+  }  
 
 }

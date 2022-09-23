@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <label
+        ><img
+          [src]="imageDefaultPath + carDetail.imagePath"
+          alt=""
+          width="528"
+          height="396"
+      /></label>
+    </div>
+    <div class="col-md-5">
+      <h3>{{ carDetail.dailyPrice }} TL</h3>
+      <ul>
+        <li class="list-group-item">
+          <strong>Marka </strong> <span>{{ carDetail.brandName }}</span>
+        </li>
+        <li class="list-group-item">
+          <strong>Renk </strong> <span>{{ carDetail.colorName }}</span>
+        </li>
+        <li class="list-group-item">
+          <strong>Açıklama </strong> <span>{{ carDetail.carName }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

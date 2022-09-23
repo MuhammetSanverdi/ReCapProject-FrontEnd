@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { Color } from 'src/app/models/color';
 import { ColorService } from 'src/app/services/color.service';
 
@@ -11,15 +12,17 @@ export class ColorComponent implements OnInit {
 
   colors:Color[]=[];
   currentColor:Color;
+  currentLink:string="";
   dataLoaded=false;
-  constructor(private colorService:ColorService) { }
+  constructor(private colorService:ColorService,private router : Router) { }
   ngOnInit(): void {
     this.getColors();
   }
   getColors(){
     this.colorService.getColors().subscribe(response=>{
       this.colors=response.data,
-      this.dataLoaded=true
+      this.dataLoaded=true;
+      
     })
 
   }
