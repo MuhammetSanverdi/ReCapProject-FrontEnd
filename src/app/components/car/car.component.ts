@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CarDetail } from 'src/app/models/carDetail';
 import { CarImage } from 'src/app/models/carImage';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
@@ -15,12 +15,15 @@ export class CarComponent implements OnInit {
 
   carDetails:CarDetail[]=[];
   carDetail:CarDetail;
+  carFilterText:string="";
+  colorFilterText:string="";
+  brandFilterText:string="";
   defaultCarImage:CarImage;
   readonly imageDefaultPath="https://localhost:44397/uploads/images/"
   myCarImage:string="";
   dataLoaded=false;
   isFiltered=false;
-  constructor(private carService:CarService,private carImageService:CarImageService,private activatedRoute:ActivatedRoute) { }
+  constructor(private carService:CarService,private carImageService:CarImageService,private activatedRoute:ActivatedRoute,public router:Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params)=>{
